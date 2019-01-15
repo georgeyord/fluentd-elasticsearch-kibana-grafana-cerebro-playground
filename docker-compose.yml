@@ -1,0 +1,39 @@
+version: '3.4'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.1
+    ports:
+      - 9200:9200
+    volumes:
+      # For persistent data
+      - ./data/es:/usr/share/elasticsearch/data/
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.3.1
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+  grafana:
+    image: grafana/grafana:5.4.3
+    ports:
+      - 3000:3000
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_INSTALL_PLUGINS: grafana-clock-panel,grafana-simple-json-datasource
+    volumes:
+      - ./data/grafana:/var/lib/grafana
+  fluentd:
+    image: k8s.gcr.io/fluentd-elasticsearch:v2.2.0
+    ports:
+      - 9880:9880
+      - 24224:24224
+    environment:
+      FLUENT_ELASTICSEARCH_HOST: elasticsearch
+      FLUENT_ELASTICSEARCH_PORT: 9200
+    volumes:
+      - ./files/fluent.conf:/etc/fluent/fluent.conf
+  cerebro:
+    image: lmenezes/cerebro:0.8.1
+    ports:
+      - 9000:9000
