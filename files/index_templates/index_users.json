@@ -1,0 +1,132 @@
+{
+  "order": 0,
+  "index_patterns": [
+    "users-*"
+  ],
+  "settings": {
+    "index": {
+      "mapping": {
+        "total_fields": {
+          "limit": "2000"
+        }
+      }
+    }
+  },
+  "mappings": {
+    "fluentd": {
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "dob": {
+          "properties": {
+            "age": {
+              "type": "long"
+            },
+            "date": {
+              "type": "date"
+            }
+          }
+        },
+        "email": {
+          "type": "text"
+        },
+        "gender": {
+          "type": "keyword"
+        },
+        "id": {
+            "type": "keyword"
+        },
+        "location": {
+          "properties": {
+            "city": {
+              "type": "keyword"
+            },
+            "coordinates": {
+              "type": "geo_point"
+            },
+            "postcode": {
+              "type": "long"
+            },
+            "state": {
+              "type": "keyword"
+            },
+            "street": {
+              "type": "keyword"
+            },
+            "timezone": {
+              "properties": {
+                "description": {
+                  "type": "keyword"
+                },
+                "offset": {
+                  "type": "keyword"
+                }
+              }
+            }
+          }
+        },
+        "name": {
+          "properties": {
+            "first": {
+              "type": "keyword"
+            },
+            "last": {
+              "type": "keyword"
+            },
+            "title": {
+              "type": "keyword"
+            }
+          }
+        },
+        "nat": {
+          "type": "keyword"
+        },
+        "phone": {
+          "type": "keyword"
+        },
+        "picture": {
+          "properties": {
+            "large": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "medium": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            },
+            "thumbnail": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword",
+                  "ignore_above": 256
+                }
+              }
+            }
+          }
+        },
+        "registered": {
+          "properties": {
+            "age": {
+              "type": "long"
+            },
+            "date": {
+              "type": "date"
+            }
+          }
+        }
+      }
+    }
+  }
+}
