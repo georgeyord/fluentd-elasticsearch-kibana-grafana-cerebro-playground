@@ -33,7 +33,7 @@ services:
       FLUENT_ELASTICSEARCH_HOST: elasticsearch
       FLUENT_ELASTICSEARCH_PORT: 9200
     volumes:
-      - ./files/fluent.conf:/etc/fluent/fluent.conf
+      - ./files/fluentd/fluent.conf:/etc/fluent/fluent.conf
   cerebro:
     image: lmenezes/cerebro:0.8.1
     ports:
