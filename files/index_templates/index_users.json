@@ -35,18 +35,25 @@
           "type": "keyword"
         },
         "id": {
-            "type": "keyword"
+          "properties": {
+            "name": {
+              "type": "keyword"
+            },
+            "value": {
+              "type": "geo_point"
+            }
+          }
         },
         "location": {
           "properties": {
-            "city": {
+            "name": {
               "type": "keyword"
             },
-            "coordinates": {
+            "value": {
               "type": "geo_point"
             },
             "postcode": {
-              "type": "long"
+              "type": "keyword"
             },
             "state": {
               "type": "keyword"
