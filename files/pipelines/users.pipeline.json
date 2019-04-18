@@ -16,6 +16,11 @@
         "tag": "geo_renamed_lon",
         "ignore_missing": true
       }
+    },
+    {
+      "remove": {
+        "field": "cell"
+      }
     }
   ]
 }
