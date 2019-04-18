@@ -8,6 +8,12 @@
       }
     },
     {
+      "drop": {
+        "if" : "ctx.dob.age != null && ctx.dob.age <= 50",
+        "ignore_failure": true
+      }
+    },
+    {
       "uppercase": {
         "field": "name.first",
         "target_field": "name.firstshouting"
