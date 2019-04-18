@@ -1,26 +1,21 @@
 {
   "description": "users pipeline",
   "processors": [
-      {
-          "rename": {
-              "field": "location.coordinates.latitude",
-              "target_field": "location.coordinates.lat",
-              "tag": "geo_renamed_lat",
-              "ignore_missing": true
-          }
-      },
-      {
-          "rename": {
-              "field": "location.coordinates.longitude",
-              "target_field": "location.coordinates.lon",
-              "tag": "geo_renamed_lon",
-              "ignore_missing": true
-          }
-      },
-      {
-          "remove": {
-              "field": "cell"
-          }
+    {
+      "rename": {
+        "field": "location.coordinates.latitude",
+        "target_field": "location.coordinates.lat",
+        "tag": "geo_renamed_lat",
+        "ignore_missing": true
       }
+    },
+    {
+      "rename": {
+        "field": "location.coordinates.longitude",
+        "target_field": "location.coordinates.lon",
+        "tag": "geo_renamed_lon",
+        "ignore_missing": true
+      }
+    }
   ]
 }
