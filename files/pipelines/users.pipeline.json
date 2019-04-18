@@ -14,6 +14,12 @@
       }
     },
     {
+      "drop": {
+        "if" : "ctx.foo?.value != null && ctx.foo.value <= 100",
+        "ignore_failure": true
+      }
+    },
+    {
       "uppercase": {
         "field": "name.first",
         "target_field": "name.firstshouting"
