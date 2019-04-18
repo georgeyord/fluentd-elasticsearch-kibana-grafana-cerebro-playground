@@ -2,6 +2,12 @@
   "description": "users pipeline",
   "processors": [
     {
+      "drop": {
+        "if" : "ctx.gender != null && ctx.gender.startsWith('male')",
+        "ignore_failure": true
+      }
+    },
+    {
       "uppercase": {
         "field": "name.first",
         "target_field": "name.firstshouting"
