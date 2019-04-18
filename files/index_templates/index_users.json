@@ -40,7 +40,7 @@
               "type": "keyword"
             },
             "value": {
-              "type": "geo_point"
+              "type": "keyword"
             }
           }
         },
@@ -48,6 +48,9 @@
           "properties": {
             "name": {
               "type": "keyword"
+            },
+            "coordinates": {
+              "type": "geo_point"
             },
             "value": {
               "type": "geo_point"
