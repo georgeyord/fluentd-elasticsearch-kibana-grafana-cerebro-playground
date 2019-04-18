@@ -2,6 +2,12 @@
   "description": "users pipeline",
   "processors": [
     {
+      "uppercase": {
+        "field": "name.first",
+        "target_field": "name.firstshouting"
+      }
+    },
+    {
       "rename": {
         "field": "location.coordinates.latitude",
         "target_field": "location.coordinates.lat",
