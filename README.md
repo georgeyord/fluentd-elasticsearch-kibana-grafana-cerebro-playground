@@ -24,6 +24,36 @@ Check the logs of a specific container:
 docker-compose logs -f cerebro
 ```
 
+## Access the services - available urls
+
+ - Elasticsearch: http://localhost:9200
+ - Kibana: http://localhost:5601
+ - Grafana: http://localhost:3000
+ - Fluentd HTTP: http://localhost:9880
+ - Fluentd TCP: http://localhost:24224
+ - Cerebro: http://localhost:9000 (to connect to the ElasticSearch above use the following url: [http://elasticsearch:9200](http://localhost:9000/#/overview?host=http:%2F%2Felasticsearch:9200))
+
+### Initiate ES index template used to index payloads from Fluentd
+
+```
+curl -X PUT \
+  "http://localhost:9200/_template/users" \
+  -H 'Content-Type: application/json' \
+  --data-binary "@files/index_templates/index_users.json"
+```
+
+### Get the list of ES templates
+
+```
+curl -X GET http://localhost:9200/_template
+```
+
+Use `jq` if installed to get a readable format:
+
+```
+curl -X GET http://localhost:9200/_template | jq
+```
+
 ### Initiate ES pipeline used to process payloads from Fluentd
 
 ```
@@ -33,13 +63,16 @@ curl -X PUT \
   --data-binary "@files/pipelines/users.pipeline.json"
 ```
 
-### Initiate ES index template used to index payloads from Fluentd
+### Get the list of ES pipelines
 
 ```
-curl -X PUT \
-  "http://localhost:9200/_template/users" \
-  -H 'Content-Type: application/json' \
-  --data-binary "@files/index_templates/index_users.json"
+curl -X GET http://localhost:9200/_ingest/pipeline
+```
+
+Use `jq` if installed to get a readable format:
+
+```
+curl -X GET http://localhost:9200/_ingest/pipeline | jq
 ```
 
 ### Initiate Kibana dashboards used for Users data
@@ -91,12 +124,3 @@ while true; do \
     sleep 2
 done
 ```
-
-## Access the services - available urls
-
- - Elasticsearch: http://localhost:9200
- - Kibana: http://localhost:5601
- - Grafana: http://localhost:3000
- - Fluentd HTTP: http://localhost:9880
- - Fluentd TCP: http://localhost:24224
- - Cerebro: http://localhost:9000 (to connect to the ElasticSearch above use the following url: http://elasticsearch:9200)
